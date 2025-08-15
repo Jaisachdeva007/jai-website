@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --primary-color: #ff014f;
   --text-dark: #222222;
@@ -265,4 +269,64 @@ nav {
   .links h4 {
     text-align: left;
   }
+}
+
+.section {
+  padding: 4rem 1rem;
+  max-width: var(--max-width);
+  margin: auto;
+  text-align: center;
+}
+
+.section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.section p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.section li {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.project-card {
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 10px 10px 15px #d7dbe6, -10px -10px 15px var(--white);
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: left;
+}
+
+.project-card h3 {
+  color: var(--primary-color);
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.project-card p {
+  font-size: 1rem;
+  color: var(--text-dark);
+  line-height: 1.5;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 15px 15px 20px #d0d4df, -15px -15px 20px var(--white);
 }

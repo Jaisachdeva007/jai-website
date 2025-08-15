@@ -8,9 +8,10 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
-    <title>Web Design Mastery | Ciara</title>
+    <title>Web Design Mastery | Jai Sachdeva</title>
   </head>
   <body>
+    <!-- Navbar -->
     <nav>
       <div class="nav__header">
         <div class="nav__logo">
@@ -23,24 +24,29 @@
         </div>
       </div>
       <ul class="nav__links" id="nav-links">
-        <li><a href="#">About Me</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Portfolio</a></li>
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#work-experience">Work Experience</a></li>
       </ul>
     </nav>
 
-    <header class="header__container">
+    <!-- Header -->
+    <header class="header__container" id="about">
       <div class="header__image">
         <img src="assets/header.png" alt="header" />
       </div>
       <div class="header__content">
         <h5>Welcome To My World</h5>
-        <h1>Hi, I am <span>Jai Sachdeva</span> a <span id="changing-text">Student</span></h1>
+        <h1>
+          Hi, I am <span>Jai Sachdeva</span> a
+          <span id="changing-text">Student</span>
+        </h1>
 
         <p>
-          A 3rd-year Computer Science student at Dalhousie University, 
-          passionate about Cybersecurity, Artificial Intelligence, and UI/UX. Beyond tech, 
-          I’m a sports enthusiast with a background in roller hockey, tennis, and competitive debating.
+          A 3rd-year Computer Science student at Dalhousie University,
+          passionate about Cybersecurity, Artificial Intelligence, and UI/UX.
+          Beyond tech, I’m a sports enthusiast with a background in roller
+          hockey, tennis, and competitive debating.
         </p>
         <div class="links">
           <div class="socials">
@@ -50,11 +56,12 @@
                 <i class="ri-github-line"></i>
               </a>
               <li>
-                <a href="https://www.linkedin.com/in/jai-sachdeva-993261212" target="_blank">
+                <a
+                  href="https://www.linkedin.com/in/jai-sachdeva-993261212"
+                  target="_blank"
+                >
                   <i class="ri-linkedin-box-line"></i>
                 </a>
-                
-                
               </li>
               <li>
                 <a href="https://instagram.com/jai_sachdevaaaa" target="_blank">
@@ -63,10 +70,53 @@
               </li>
             </ul>
           </div>
-          
         </div>
       </div>
     </header>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+      <h2>Projects</h2>
+      <p>Here are some of the projects I have worked on recently:</p>
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3>Nurse Navigator</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+        <div class="project-card">
+          <h3>Pizza POS</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+        <div class="project-card">
+          <h3>Smart Compass</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+        <div class="project-card">
+          <h3>Portfolio Website</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+        <div class="project-card">
+          <h3>Amazon Clone</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+        <div class="project-card">
+          <h3>TBD</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Work Experience Section -->
+    <section id="work-experience" class="section">
+      <h2>Work Experience</h2>
+      <p>Highlights of my professional and volunteer experiences:</p>
+      <ul>
+        <li><strong>Teaching Assistant:</strong> Dalhousie University – CSCI 1105, 1110.</li>
+        <li><strong>Engagement Student Ambassador:</strong> Faculty of Computer Science.</li>
+        <li><strong>ITS Client Services:</strong> Managed IT support, product testing, lab setup.</li>
+        <li><strong>Founder & President:</strong> Enora Model United Nations.</li>
+      </ul>
+    </section>
 
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="main.js"></script>
