@@ -86,4 +86,33 @@ function updateTitle() {
   titleIndex = (titleIndex + 1) % titles.length;
 }
 
-setInterval(updateTitle, 2000);
+document.addEventListener("scroll", () => {
+  const timeline = document.querySelector(".timeline");
+  const items = document.querySelectorAll(".timeline-item");
+  const ball = document.getElementById("timeline-ball");
+
+  if (!timeline) return;
+
+  const rect = timeline.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
+
+  // Scroll progress 0 → 1
+  const progress = Math.min(
+    Math.max((windowHeight - rect.top) / (rect.height + windowHeight), 0),
+    1
+  );
+
+  // Ball follows the vertical line
+  const y = progress * timeline.offsetHeight;
+  ball.style.top = `${y}px`;
+
+  // Highlight items when ball passes
+  items.forEach((item, index) => {
+    const itemTop = item.offsetTop;
+    const itemMid = itemTop + item.offsetHeight / 2;
+
+    if (y >= itemMid - 100) {
+      item.classList.add("active");
+    }
+  });
+});

@@ -382,3 +382,64 @@ nav {
 .github-link:hover {
   color: #ff014f;
 }
+.timeline-section {
+  padding: 4rem 1rem;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+.timeline {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 3rem 0;
+}
+
+.timeline-line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 6px;
+  height: 100%;
+  background: #ddd;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.timeline-ball {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #ff014f, #ff7b7b);
+  border-radius: 50%;
+  transform: translate(-50%, 0);
+  transition: top 0.15s linear;
+  z-index: 2;
+  box-shadow: 0 0 20px rgba(255, 1, 79, 0.6);
+}
+
+.timeline-item {
+  position: relative;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin: 4rem auto;
+  width: 70%;
+  z-index: 2;
+  opacity: 0.4;
+  transform: translateY(20px);
+  transition: all 0.5s ease-out;
+}
+
+.timeline-item.active {
+  opacity: 1;
+  transform: translateY(0);
+  box-shadow: 0 6px 20px rgba(255, 1, 79, 0.2);
+}
+.timeline-section,
+.section {
+  background: transparent;
+}
