@@ -330,3 +330,55 @@ nav {
   transform: translateY(-8px);
   box-shadow: 15px 15px 20px #d0d4df, -15px -15px 20px var(--white);
 }
+.project-card {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.project-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+.project-details {
+  list-style: none;
+  padding-left: 0;
+}
+
+.project-details li {
+  margin-bottom: 0.6rem;
+  padding-left: 1.8rem;
+  position: relative;
+  line-height: 1.5;
+}
+
+.project-details li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: #ff014f; /* Accent color */
+  font-weight: bold;
+}
+
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #0366d6;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.github-link:hover {
+  color: #ff014f;
+}

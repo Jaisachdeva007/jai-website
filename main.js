@@ -72,7 +72,7 @@ ScrollReveal().reveal(".project-card", { ...scrollRevealOption, interval: 200 })
 
 /* -------------------- Rotating Title Text -------------------- */
 const titles = [
-  "3rd year Student",
+  "4th year Student",
   "Web Developer",
   "UI/UX Designer",
   "Research Assistant",
