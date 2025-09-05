@@ -173,37 +173,55 @@
     </section>
 
     <!-- Work Experience Timeline -->
-        <section id="work-experience" class="timeline-section">
+          <section id="work-experience" class="timeline-section">
       <h2>Work Experience</h2>
       <div class="timeline">
-        <div class="timeline-line"></div>
+        <!-- SVG Curvy Path -->
+        <svg class="timeline-path" width="300%" height="2000" viewBox="0 0 600 2000" preserveAspectRatio="xMidYMin meet">
+          <path id="snakePath" 
+            d="M300 0 
+              C 0 250, 600 400, 300 600
+              C 0 850, 600 1000, 300 1200
+              C 0 1450, 600 1600, 300 1800" 
+            stroke="#ddd" 
+            stroke-width="6" 
+            fill="transparent"/>
+            <defs>
+            <linearGradient id="fadeStroke" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="90%" stop-color="#ddd" stop-opacity="1" />
+              <stop offset="100%" stop-color="#ddd" stop-opacity="0" />
+            </linearGradient>
+          </defs>
+        </svg>
+
+        <!-- Ball -->
         <div class="timeline-ball" id="timeline-ball"></div>
 
-        <div class="timeline-item">
+        <!-- Items (centered text) -->
+        <div class="timeline-item left">
           <h3>Role One</h3>
           <p>Lorem ipsum dolor sit amet.</p>
         </div>
 
-        <div class="timeline-item">
+        <div class="timeline-item right">
           <h3>Role Two</h3>
           <p>Lorem ipsum dolor sit amet.</p>
         </div>
 
-        <div class="timeline-item">
+        <div class="timeline-item left">
           <h3>Role Three</h3>
           <p>Lorem ipsum dolor sit amet.</p>
         </div>
 
-        <div class="timeline-item">
+        <div class="timeline-item right">
           <h3>Role Four</h3>
           <p>Lorem ipsum dolor sit amet.</p>
         </div>
-      </div>
-    </section>
 
 
 
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="main.js"></script>
-  </body>
+   
+</body>
 </html>
