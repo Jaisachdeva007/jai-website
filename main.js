@@ -95,6 +95,21 @@ ScrollReveal().reveal(".timeline-item", {
   interval: 150,
 });
 
+ScrollReveal().reveal(".skill-group", {
+  ...scrollRevealOption,
+  interval: 120,
+});
+
+ScrollReveal().reveal(".skills-card", {
+  ...scrollRevealOption,
+  interval: 120,
+});
+
+ScrollReveal().reveal(".skills-modern-card", {
+  ...scrollRevealOption,
+  interval: 120,
+});
+
 /* -------------------- Rotating Title Text -------------------- */
 const titles = [
   "4th Year Student",
