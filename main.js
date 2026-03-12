@@ -38,10 +38,9 @@ document.querySelectorAll('nav a[href^="#"]').forEach((anchor) => {
     if (targetElement) {
       const offset = document.querySelector("nav").offsetHeight;
       const offsetPosition = targetElement.offsetTop - offset;
-      smoothScrollTo(offsetPosition, 800); // glide to target in 0.8s
+      smoothScrollTo(offsetPosition, 800);
     }
 
-    // Close mobile menu after click
     navLinks.classList.remove("open");
     menuBtnIcon.setAttribute("class", "ri-menu-line");
   });
@@ -65,83 +64,108 @@ ScrollReveal().reveal(".header__image img", {
   ...scrollRevealOption,
   origin: "right",
 });
+
 ScrollReveal().reveal(".header__content h5", {
   ...scrollRevealOption,
   delay: 500,
 });
+
 ScrollReveal().reveal(".header__content h1", {
   ...scrollRevealOption,
   delay: 1000,
 });
+
 ScrollReveal().reveal(".header__content p", {
   ...scrollRevealOption,
   delay: 1500,
 });
+
 ScrollReveal().reveal(".header__content .links", {
   ...scrollRevealOption,
   delay: 2000,
 });
-ScrollReveal().reveal(".project-card", { ...scrollRevealOption, interval: 200 });
+
+ScrollReveal().reveal(".project-card", {
+  ...scrollRevealOption,
+  interval: 200,
+});
+
+ScrollReveal().reveal(".timeline-item", {
+  ...scrollRevealOption,
+  interval: 150,
+});
 
 /* -------------------- Rotating Title Text -------------------- */
 const titles = [
-  "4th year Student",
+  "4th Year Student",
   "Web Developer",
   "UI/UX Designer",
   "Research Assistant",
-  "Teaching Assistant",
+  "Student Leader",
 ];
+
 let titleIndex = 0;
+const changingText = document.getElementById("changing-text");
 
 function updateTitle() {
-  const titleElement = document.querySelector(".header__content h1");
-  if (!titleElement) return;
-  titleElement.innerHTML = `Hi, I am <span>Jai Sachdeva</span> a ${titles[titleIndex]}`;
+  if (!changingText) return;
+  changingText.textContent = titles[titleIndex];
   titleIndex = (titleIndex + 1) % titles.length;
 }
 
-// run every 2 seconds
-setInterval(updateTitle, 2000);
-// also run immediately once on load
 updateTitle();
+setInterval(updateTitle, 2000);
 
 /* -------------------- Timeline Ball Following Curve -------------------- */
-document.addEventListener("scroll", () => {
+document.addEventListener("scroll", updateTimelineBall);
+window.addEventListener("load", updateTimelineBall);
+window.addEventListener("resize", updateTimelineBall);
+
+function updateTimelineBall() {
   const path = document.querySelector("#snakePath");
   const ball = document.getElementById("timeline-ball");
+  const glow = document.getElementById("timeline-ball-glow");
+  const ring = document.getElementById("timeline-ball-ring");
   const items = document.querySelectorAll(".timeline-item");
   const timeline = document.querySelector(".timeline");
 
-  if (!path || !ball || !timeline) return;
+  if (!path || !ball || !glow || !ring || !timeline) return;
 
-  const rect = timeline.getBoundingClientRect();
+  const timelineRect = timeline.getBoundingClientRect();
   const windowHeight = window.innerHeight;
 
-  // Only start tracking when timeline is visible
-  if (rect.top > windowHeight || rect.bottom < 0) return;
+  if (timelineRect.top > windowHeight || timelineRect.bottom < 0) return;
 
-  // --- OFFSET ADDED HERE ---
-  const startOffset = windowHeight * 0.3; // start 30% down from viewport
-  const effectiveScroll = windowHeight - rect.top - startOffset;
+  const startOffset = windowHeight * 0.22;
+  const effectiveScroll = windowHeight - timelineRect.top - startOffset;
 
   const progress = Math.min(
-    Math.max(effectiveScroll / (rect.height + windowHeight - startOffset), 0),
+    Math.max(
+      effectiveScroll / (timelineRect.height + windowHeight - startOffset),
+      0
+    ),
     1
   );
 
   const pathLength = path.getTotalLength();
   const point = path.getPointAtLength(progress * pathLength);
 
-  // Move the ball
-  ball.style.left = `${point.x}px`;
-  ball.style.top = `${point.y}px`;
+  ball.setAttribute("cx", point.x);
+  ball.setAttribute("cy", point.y);
 
-  // Highlight items
+  glow.setAttribute("cx", point.x);
+  glow.setAttribute("cy", point.y);
+
+  ring.setAttribute("cx", point.x);
+  ring.setAttribute("cy", point.y);
+
   items.forEach((item) => {
-    const itemTop = item.offsetTop;
-    if (point.y >= itemTop - 100) {
+    const triggerPoint = item.offsetTop - 110;
+
+    if (point.y >= triggerPoint) {
       item.classList.add("active");
+    } else {
+      item.classList.remove("active");
     }
   });
-  
-});
+}
