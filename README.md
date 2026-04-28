@@ -130,6 +130,6 @@ If `git push` asks for credentials, set up a Personal Access Token or GitHub CLI
 
 - A `/blog` route using MDX (Next.js makes this trivial)
 - A real OG image (1200×630 designed specifically for sharing) — currently reuses `header.png`
-- A custom favicon (the current one is `logo.jpg`; you'd get sharper results from a 32×32 PNG or an SVG)
+- A custom favicon (the current one is `logo.png`; you'd get sharper results from a 32×32 PNG or an SVG)
 - A resume PDF download in the nav
 - View transitions API for smoother section nav
