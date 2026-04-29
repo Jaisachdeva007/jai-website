@@ -31,6 +31,32 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
+    title: "EmoScape VR",
+    blurb:
+      "An embodied VR space where users revisit and reflect on their emotional history — built on a GI '26 research paper.",
+    bullets: [
+      "FastAPI pipeline: Whisper transcription, Ollama (Llama 3.2) reasoning, VADER sentiment",
+      "Three.js + WebXR frontend rendering a 3D emotional spline of past sessions",
+      "Runs on Quest or in-browser; SQLite session storage",
+    ],
+    stack: ["FastAPI", "Three.js", "WebXR", "Ollama", "Whisper"],
+    github: "https://github.com/Jaisachdeva007/emoscape",
+    badge: "Research",
+  },
+  {
+    title: "Care Companion",
+    blurb:
+      "A Flutter app pairing seniors with caregivers — meds, voice help, and emergency services on one shared profile.",
+    bullets: [
+      "Dual-role accounts (senior ↔ caregiver) synced via Firebase Auth and Firestore",
+      "Medication tracking with timezone-aware local reminders + voice in/out (speech_to_text, TTS)",
+      "Emergency services lookup with geolocator + OpenStreetMap",
+    ],
+    stack: ["Flutter", "Dart", "Firebase", "Firestore", "OpenStreetMap"],
+    github: "https://github.com/Jaisachdeva007/care-companion",
+    badge: "Flagship",
+  },
+  {
     title: "EviaFi",
     blurb:
       "AI-powered personal finance app that helps students track spending and build healthier money habits.",
@@ -40,7 +66,6 @@ export const PROJECTS: Project[] = [
       "Habit tracking + dashboards designed to nudge behavior",
     ],
     stack: ["React Native", "Firebase", "Ollama", "RAG"],
-    badge: "Flagship",
   },
   {
     title: "Nurse Navigator",
@@ -68,19 +93,6 @@ export const PROJECTS: Project[] = [
     badge: "Coming soon",
   },
   {
-    title: "Jessy's Pizza POS",
-    blurb:
-      "A point-of-sale frontend for a local pizza shop — shipped as a freelance project.",
-    bullets: [
-      "Tablet-first POS interface for fast order entry",
-      "Modular menu config + responsive design",
-      "Backend integration in progress",
-    ],
-    stack: ["HTML", "CSS", "JavaScript"],
-    github: "https://github.com/Jaisachdeva007/Jessys-pizza-pos",
-    badge: "Freelance",
-  },
-  {
     title: "GGJ 2024 — VR",
     blurb:
       "A Meta Quest VR game built at Global Game Jam 2024. Won Most Ambitious.",
@@ -92,18 +104,6 @@ export const PROJECTS: Project[] = [
     stack: ["Unity", "C#", "VR"],
     github: "https://github.com/AdrianLloyd7113/ggj2024",
     badge: "Award winner",
-  },
-  {
-    title: "This Site",
-    blurb:
-      "Built in Next.js, Tailwind, and Framer Motion. Open source — fork it.",
-    bullets: [
-      "App Router, server components, optimized images",
-      "Scroll-linked timeline animation, cursor spotlight, glass UI",
-      "Designed dark-first with neon accents",
-    ],
-    stack: ["Next.js", "Tailwind", "Framer Motion", "TypeScript"],
-    github: "https://github.com/Jaisachdeva007/jai-website",
   },
 ];
 
