@@ -70,79 +70,74 @@ export function ProjectCard({ project, index, featured = false, className }: Pro
         </span>
       )}
 
-      <div className={cn("relative", featured && "lg:flex lg:gap-10")}>
-        {/* main content */}
-        <div className={featured ? "lg:flex-1" : ""}>
-          {featured && (
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-neon opacity-70">
-              Featured project
-            </p>
-          )}
-          <h3 className={cn(
-            "font-display font-semibold text-white",
-            featured ? "text-3xl md:text-4xl" : "text-2xl"
-          )}>
-            {project.title}
-          </h3>
-          <p className={cn(
-            "mt-2.5 leading-relaxed text-bone-300",
-            featured ? "text-base" : "text-sm"
-          )}>
-            {project.blurb}
+      <div className="relative">
+        {featured && (
+          <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-neon opacity-70">
+            Featured project
           </p>
-
-          <ul className="mt-5 space-y-2">
-            {project.bullets.map((b) => (
-              <li key={b} className="flex gap-2.5 text-sm text-bone-200">
-                <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-neon" />
-                <span>{b}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* side panel for featured */}
-        <div className={cn(
-          featured ? "mt-7 flex flex-col justify-between gap-5 lg:mt-0 lg:w-52 lg:shrink-0" : "mt-6"
+        )}
+        <h3 className={cn(
+          "font-display font-semibold text-white",
+          featured ? "text-3xl md:text-4xl" : "text-2xl"
         )}>
-          <div className="flex flex-wrap gap-1.5">
-            {project.stack.map((s) => (
-              <span key={s} className="chip">
-                {s}
-              </span>
-            ))}
-          </div>
+          {project.title}
+        </h3>
+        <p className={cn(
+          "mt-2.5 leading-relaxed text-bone-300",
+          featured ? "text-base" : "text-sm"
+        )}>
+          {project.blurb}
+        </p>
 
-          {(project.github || project.demo) && (
-            <div className={cn(
-              "flex items-center gap-4",
-              !featured && "border-t border-white/5 pt-5"
-            )}>
-              {project.github && (
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-bone-200 transition-colors hover:text-neon"
-                >
-                  <Github size={15} />
-                  Source
-                </a>
-              )}
-              {project.demo && (
-                <a
-                  href={project.demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-bone-200 transition-colors hover:text-neon"
-                >
-                  <ArrowUpRight size={15} />
-                  Live demo
-                </a>
-              )}
-            </div>
-          )}
+        <ul className={cn("mt-5 space-y-2", featured && "lg:grid lg:grid-cols-2 lg:gap-x-8 lg:space-y-0")}>
+          {project.bullets.map((b) => (
+            <li key={b} className="flex gap-2.5 text-sm text-bone-200">
+              <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-neon" />
+              <span>{b}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div className={cn(
+          "mt-6 flex flex-wrap gap-1.5",
+          featured && "mt-7"
+        )}>
+          {project.stack.map((s) => (
+            <span key={s} className="chip">
+              {s}
+            </span>
+          ))}
         </div>
+
+        {(project.github || project.demo) && (
+          <div className={cn(
+            "mt-6 flex items-center gap-4",
+            !featured && "border-t border-white/5 pt-5"
+          )}>
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-bone-200 transition-colors hover:text-neon"
+              >
+                <Github size={15} />
+                Source
+              </a>
+            )}
+            {project.demo && (
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-bone-200 transition-colors hover:text-neon"
+              >
+                <ArrowUpRight size={15} />
+                Live demo
+              </a>
+            )}
+          </div>
+        )}
       </div>
     </motion.div>
   );
