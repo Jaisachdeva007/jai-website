@@ -157,6 +157,12 @@ export type SkillGroup = {
   items: string[];
 };
 
+export const STATS: { value: string; label: string }[] = [
+  { value: "2×", label: "Hackathon winner" },
+  { value: "6+", label: "Projects shipped" },
+  { value: "4 yrs", label: "Building software" },
+];
+
 export const SKILLS: SkillGroup[] = [
   {
     title: "Programming & Development",
