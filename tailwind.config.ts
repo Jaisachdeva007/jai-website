@@ -19,6 +19,11 @@ const config: Config = {
           200: "#ffb3c6",
           glow: "rgba(255, 1, 79, 0.55)",
         },
+        purple: {
+          DEFAULT: "#6334ff",
+          500: "#7c4dff",
+          300: "#a78bff",
+        },
         bone: {
           50: "#fafafa",
           100: "#f1f1f3",
@@ -34,19 +39,26 @@ const config: Config = {
       },
       backgroundImage: {
         "neon-gradient": "linear-gradient(135deg, #ff3a72 0%, #ff014f 100%)",
-        "mesh":
-          "radial-gradient(at 20% 10%, rgba(255,1,79,0.18) 0px, transparent 50%), radial-gradient(at 80% 0%, rgba(99,52,255,0.12) 0px, transparent 50%), radial-gradient(at 50% 90%, rgba(255,1,79,0.10) 0px, transparent 60%)",
+        "neon-gradient-v": "linear-gradient(180deg, #ff3a72 0%, #ff014f 100%)",
+        "purple-gradient": "linear-gradient(135deg, #6334ff 0%, #4318cc 100%)",
+        "dual-gradient": "linear-gradient(135deg, #ff3a72 0%, #ff014f 50%, #6334ff 100%)",
+        "mesh": "radial-gradient(at 20% 10%, rgba(255,1,79,0.18) 0px, transparent 50%), radial-gradient(at 80% 0%, rgba(99,52,255,0.12) 0px, transparent 50%), radial-gradient(at 50% 90%, rgba(255,1,79,0.10) 0px, transparent 60%)",
       },
       boxShadow: {
         glow: "0 0 40px rgba(255, 1, 79, 0.35)",
         "glow-lg": "0 0 80px rgba(255, 1, 79, 0.45)",
+        "glow-sm": "0 0 20px rgba(255, 1, 79, 0.25)",
+        "purple-glow": "0 0 40px rgba(99, 52, 255, 0.35)",
         card: "0 18px 50px rgba(0,0,0,0.45)",
+        "card-lg": "0 30px 80px rgba(0,0,0,0.6)",
       },
       animation: {
         "spin-slow": "spin 18s linear infinite",
         "float": "float 6s ease-in-out infinite",
         "pulse-glow": "pulseGlow 3s ease-in-out infinite",
-        "marquee": "marquee 28s linear infinite",
+        "marquee": "marquee 32s linear infinite",
+        "marquee-reverse": "marqueeReverse 32s linear infinite",
+        "fade-up": "fadeUp 0.5s ease-out forwards",
       },
       keyframes: {
         float: {
@@ -60,6 +72,14 @@ const config: Config = {
         marquee: {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
+        },
+        marqueeReverse: {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+        fadeUp: {
+          "0%": { opacity: "0", transform: "translateY(16px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
       },
     },
