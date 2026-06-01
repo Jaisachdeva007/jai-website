@@ -98,7 +98,7 @@ export function Nav() {
 
           <button
             aria-label="Toggle menu"
-            className="md:hidden rounded-full p-2 text-bone-100 hover:bg-white/5 transition-colors"
+            className="flex items-center justify-center md:hidden rounded-full border border-white/10 p-2.5 text-bone-100 transition-colors hover:bg-white/5 hover:border-white/20"
             onClick={() => setOpen((v) => !v)}
           >
             {open ? <X size={20} /> : <Menu size={20} />}
