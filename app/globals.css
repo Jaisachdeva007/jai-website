@@ -7,6 +7,7 @@
     --bg: 7 7 16;
     --fg: 250 250 250;
     --neon: 255 1 79;
+    --electric: 41 121 255;
   }
 
   html {
@@ -16,12 +17,26 @@
   body {
     @apply bg-ink-950 text-bone-100 font-sans antialiased;
     background-image:
-      radial-gradient(circle at 15% 10%, rgba(255, 1, 79, 0.12), transparent 45%),
-      radial-gradient(circle at 85% 0%, rgba(99, 52, 255, 0.10), transparent 50%),
-      radial-gradient(circle at 50% 100%, rgba(255, 1, 79, 0.07), transparent 60%);
+      radial-gradient(circle at 15% 10%, rgba(255, 1, 79, 0.08), transparent 40%),
+      radial-gradient(circle at 85% 5%, rgba(41, 121, 255, 0.09), transparent 45%),
+      radial-gradient(circle at 50% 100%, rgba(99, 52, 255, 0.07), transparent 55%);
     background-attachment: fixed;
   }
 
+  /* dot grid */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 28px 28px;
+    -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 0%, rgba(0,0,0,0.35) 0%, transparent 70%);
+    mask-image: radial-gradient(ellipse 90% 80% at 50% 0%, rgba(0,0,0,0.35) 0%, transparent 70%);
+  }
+
+  /* subtle grain overlay */
   body::before {
     content: "";
     position: fixed;
@@ -125,6 +140,13 @@
 
   .text-dual-gradient {
     background: linear-gradient(135deg, #ff6f93 0%, #ff014f 40%, #6334ff 100%);
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-electric-gradient {
+    background: linear-gradient(135deg, #84b0ff 0%, #2979ff 60%, #1a5fd4 100%);
     -webkit-background-clip: text;
             background-clip: text;
     -webkit-text-fill-color: transparent;

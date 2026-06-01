@@ -18,9 +18,9 @@ export function SectionHeading({ eyebrow, title, blurb, align = "center" }: Prop
         viewport={{ once: true, amount: 0.6 }}
         className="mb-4 inline-flex items-center gap-2.5 text-xs font-bold uppercase tracking-[0.25em] text-neon"
       >
-        <span className="h-px w-8 bg-neon-gradient" />
+        <span className="h-px w-8 bg-gradient-to-r from-neon to-electric" />
         {eyebrow}
-        <span className="h-px w-8 bg-neon-gradient" style={align === "left" ? { display: "none" } : {}} />
+        <span className="h-px w-8 bg-gradient-to-r from-electric to-neon" style={align === "left" ? { display: "none" } : {}} />
       </motion.p>
 
       <motion.h2

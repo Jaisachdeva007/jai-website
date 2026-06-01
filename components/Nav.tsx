@@ -55,9 +55,9 @@ export function Nav() {
       >
         <nav className="flex items-center justify-between px-5 py-3">
           <a href="#top" className="group flex items-center gap-2.5">
-            <span className="relative inline-flex h-9 w-9 items-center justify-center rounded-full bg-neon-gradient text-sm font-bold text-white shadow-glow transition-shadow duration-300 group-hover:shadow-glow-lg">
+            <span className="relative inline-flex h-9 w-9 items-center justify-center rounded-full bg-dual-gradient text-sm font-bold text-white shadow-glow transition-shadow duration-300 group-hover:shadow-glow-lg">
               JS
-              <span className="absolute inset-0 rounded-full bg-neon/20 blur-md opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <span className="absolute inset-0 rounded-full bg-electric/20 blur-md opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             </span>
             <span className="hidden font-display text-sm font-semibold tracking-tight text-bone-100 sm:inline">
               jai sachdeva

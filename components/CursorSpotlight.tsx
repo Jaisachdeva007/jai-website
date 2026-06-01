@@ -53,7 +53,7 @@ export function CursorSpotlight() {
       className="pointer-events-none fixed left-0 top-0 z-0 h-[600px] w-[600px] rounded-full opacity-60 mix-blend-screen"
       style={{
         background:
-          "radial-gradient(circle, rgba(255,1,79,0.18) 0%, rgba(255,1,79,0.05) 35%, transparent 70%)",
+          "radial-gradient(circle, rgba(41,121,255,0.12) 0%, rgba(255,1,79,0.07) 35%, transparent 70%)",
       }}
     />
   );

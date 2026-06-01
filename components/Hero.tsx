@@ -10,20 +10,20 @@ export function Hero() {
   return (
     <section
       id="about"
-      className="container-x relative isolate flex min-h-[100svh] items-center pt-32 md:pt-24 dot-grid"
+      className="container-x relative isolate flex min-h-[100svh] items-center pt-32 md:pt-24"
     >
       {/* glow blobs */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-32 right-0 h-[500px] w-[500px] rounded-full bg-neon/15 blur-[140px]"
+        className="pointer-events-none absolute -top-32 right-0 h-[500px] w-[500px] rounded-full bg-neon/12 blur-[140px]"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -bottom-40 -left-24 h-[450px] w-[450px] rounded-full bg-purple/10 blur-[140px]"
+        className="pointer-events-none absolute -bottom-40 -left-24 h-[450px] w-[450px] rounded-full bg-electric/8 blur-[140px]"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute top-1/2 left-1/2 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-neon/5 blur-[100px]"
+        className="pointer-events-none absolute top-1/2 right-1/4 h-[300px] w-[300px] rounded-full bg-electric/6 blur-[100px]"
       />
 
       <div className="grid w-full items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20">
@@ -32,13 +32,16 @@ export function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.05 }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-bone-200 backdrop-blur-sm"
+            className="mb-6 inline-flex items-center gap-2 rounded border border-electric/25 bg-ink-800/90 px-3 py-1.5 text-xs font-mono text-bone-200 shadow-[0_0_20px_rgba(41,121,255,0.08)]"
           >
-            <span className="relative inline-flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-neon opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-neon" />
+            <span className="text-electric">$</span>
+            <span className="text-electric-300">status</span>
+            <span className="text-bone-400 mx-0.5">=</span>
+            <span className="text-bone-100">&quot;open_to_work&quot;</span>
+            <span className="relative ml-2 inline-flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-electric opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-electric" />
             </span>
-            Open to opportunities · Canada / Remote
           </motion.p>
 
           <motion.h1
@@ -133,8 +136,8 @@ export function Hero() {
           className="relative mx-auto w-full max-w-md"
         >
           <div className="relative aspect-square overflow-hidden rounded-[2.5rem] border border-white/10 bg-ink-800">
-            {/* animated rotating glow ring */}
-            <div className="pointer-events-none absolute -inset-1 animate-spin-slow rounded-[2.75rem] bg-[conic-gradient(from_0deg,#ff014f,transparent_30%,#6334ff_60%,transparent_85%,#ff014f)] opacity-50 blur-md" />
+            {/* animated rotating glow ring — red + electric blue */}
+            <div className="pointer-events-none absolute -inset-1 animate-spin-slow rounded-[2.75rem] bg-[conic-gradient(from_0deg,#ff014f,transparent_25%,#2979ff_55%,transparent_80%,#ff014f)] opacity-45 blur-md" />
             <div className="absolute inset-0 rounded-[2.5rem] bg-ink-900" />
             <Image
               src="/assets/header.png"
@@ -165,7 +168,6 @@ export function Hero() {
             </span>
             Available
           </motion.div>
-
         </motion.div>
       </div>
 

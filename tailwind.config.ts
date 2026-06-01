@@ -19,6 +19,12 @@ const config: Config = {
           200: "#ffb3c6",
           glow: "rgba(255, 1, 79, 0.55)",
         },
+        electric: {
+          DEFAULT: "#2979ff",
+          400: "#5393ff",
+          300: "#84b0ff",
+          200: "#c2d4ff",
+        },
         purple: {
           DEFAULT: "#6334ff",
           500: "#7c4dff",
@@ -40,14 +46,17 @@ const config: Config = {
       backgroundImage: {
         "neon-gradient": "linear-gradient(135deg, #ff3a72 0%, #ff014f 100%)",
         "neon-gradient-v": "linear-gradient(180deg, #ff3a72 0%, #ff014f 100%)",
+        "electric-gradient": "linear-gradient(135deg, #5393ff 0%, #2979ff 100%)",
         "purple-gradient": "linear-gradient(135deg, #6334ff 0%, #4318cc 100%)",
-        "dual-gradient": "linear-gradient(135deg, #ff3a72 0%, #ff014f 50%, #6334ff 100%)",
+        "dual-gradient": "linear-gradient(135deg, #ff014f 0%, #6334ff 50%, #2979ff 100%)",
         "mesh": "radial-gradient(at 20% 10%, rgba(255,1,79,0.18) 0px, transparent 50%), radial-gradient(at 80% 0%, rgba(99,52,255,0.12) 0px, transparent 50%), radial-gradient(at 50% 90%, rgba(255,1,79,0.10) 0px, transparent 60%)",
       },
       boxShadow: {
         glow: "0 0 40px rgba(255, 1, 79, 0.35)",
         "glow-lg": "0 0 80px rgba(255, 1, 79, 0.45)",
         "glow-sm": "0 0 20px rgba(255, 1, 79, 0.25)",
+        "glow-blue": "0 0 40px rgba(41, 121, 255, 0.35)",
+        "glow-blue-lg": "0 0 80px rgba(41, 121, 255, 0.45)",
         "purple-glow": "0 0 40px rgba(99, 52, 255, 0.35)",
         card: "0 18px 50px rgba(0,0,0,0.45)",
         "card-lg": "0 30px 80px rgba(0,0,0,0.6)",
