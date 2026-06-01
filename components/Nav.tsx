@@ -47,7 +47,7 @@ export function Nav() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
         className={cn(
-          "fixed left-1/2 top-4 z-50 w-[min(92%,68rem)] -translate-x-1/2 rounded-full border transition-all duration-500",
+          "fixed left-1/2 top-4 z-50 w-[92%] max-w-[68rem] -translate-x-1/2 rounded-full border transition-all duration-500",
           scrolled
             ? "border-white/10 bg-ink-900/80 backdrop-blur-2xl shadow-card"
             : "border-white/5 bg-ink-900/30 backdrop-blur-md"
@@ -98,10 +98,10 @@ export function Nav() {
 
           <button
             aria-label="Toggle menu"
-            className="flex items-center justify-center md:hidden rounded-full border border-white/10 p-2.5 text-bone-100 transition-colors hover:bg-white/5 hover:border-white/20"
+            className="flex items-center justify-center md:hidden h-9 w-9 flex-shrink-0 rounded-full bg-white/10 text-white transition-colors hover:bg-white/15"
             onClick={() => setOpen((v) => !v)}
           >
-            {open ? <X size={20} /> : <Menu size={20} />}
+            {open ? <X size={18} /> : <Menu size={18} />}
           </button>
         </nav>
       </motion.header>
