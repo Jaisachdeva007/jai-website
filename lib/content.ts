@@ -149,7 +149,7 @@ export const EXPERIENCE: Experience[] = [
     role: "President, CS Society",
     org: "Dalhousie University",
     tag: "Leadership",
-    date: "2025 — Present",
+    date: "2025 — Apr 2026",
     description:
       "Leading Dalhousie's largest faculty society — 1200+ Computer Science students. Organized a 300+ guest Snowball Awards Gala, hackathons, and ski trips; managed sponsorships and the executive team.",
   },
@@ -157,7 +157,7 @@ export const EXPERIENCE: Experience[] = [
     role: "Teaching Assistant",
     org: "Software Engineering, Intro Programming & Theory of CS",
     tag: "Teaching",
-    date: "2025 — Present",
+    date: "2025 — Apr 2026",
     description:
       "Supervising 8+ Agile teams shipping Firebase-backed Android apps, running weekly labs for 60+ intro programming students, and marking 150+ formal-proof submissions — across three concurrent courses.",
   },
@@ -165,7 +165,7 @@ export const EXPERIENCE: Experience[] = [
     role: "Campus Engagement & Community Safety",
     org: "Student Life & Residence Life, Dalhousie",
     tag: "Outreach",
-    date: "2024 — Present",
+    date: "2024 — Apr 2026",
     description:
       "Supporting 500+ student events as an Engagement Ambassador, plus residence safety monitoring and crisis response on the Community Safety Team.",
   },
@@ -173,7 +173,7 @@ export const EXPERIENCE: Experience[] = [
     role: "ITS Client Services",
     org: "Dalhousie University",
     tag: "Support",
-    date: "2022 — Present",
+    date: "2022 — Apr 2026",
     description:
       "Frontline tech support for 20,000+ students, faculty, and staff. 500+ tickets closed with hardware, software, and systems troubleshooting.",
   },
