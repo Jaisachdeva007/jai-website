@@ -3,12 +3,13 @@
 const ITEMS = [
   { label: "CS Society President", accent: "neon" },
   { label: "Research Assistant @ Dalhousie", accent: "electric" },
-  { label: "6 Projects Shipped", accent: "neon" },
+  { label: "7+ Projects Shipped", accent: "neon" },
   { label: "2 Hackathon Wins", accent: "electric" },
-  { label: "GI '26 Research Paper", accent: "neon" },
-  { label: "4th Year CS", accent: "electric" },
-  { label: "Halifax, NS", accent: "neon" },
-  { label: "Open to Work", accent: "electric" },
+  { label: "5 Publications & Talks", accent: "neon" },
+  { label: "Accepted to HCI International '26", accent: "electric" },
+  { label: "4th Year CS", accent: "neon" },
+  { label: "Halifax, NS", accent: "electric" },
+  { label: "Open to Work", accent: "neon" },
 ];
 
 const doubled = [...ITEMS, ...ITEMS];
