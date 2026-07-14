@@ -214,7 +214,7 @@ export const PUBLICATIONS: Publication[] = [
     title:
       "TriSelect: Distance Adaptive Multimodal Object Selection in VR Using Eye Gaze, Hand Gesture, and Voice",
     venue: "ICMI 2026",
-    status: "Under Review",
+    status: "Accepted",
     year: "2026",
   },
   {
