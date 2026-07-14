@@ -1,13 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Code2, FlaskConical, Wand2, type LucideIcon } from "lucide-react";
+import { Code2, Database, FlaskConical, Wand2, type LucideIcon } from "lucide-react";
 import { SKILLS } from "@/lib/content";
 import { SectionHeading } from "./SectionHeading";
 import { TechMarquee } from "./TechMarquee";
 
 const ICONS: Record<string, LucideIcon> = {
   code: Code2,
+  database: Database,
   flask: FlaskConical,
   wand: Wand2,
 };
@@ -25,7 +26,7 @@ export function Skills() {
         <TechMarquee />
       </div>
 
-      <div className="mx-auto mt-10 grid max-w-5xl gap-5 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mx-auto mt-10 grid max-w-4xl gap-5 md:grid-cols-2">
         {SKILLS.map((group, i) => {
           const Icon = ICONS[group.icon] ?? Code2;
           return (
