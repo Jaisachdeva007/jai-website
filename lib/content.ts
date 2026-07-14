@@ -9,6 +9,7 @@ export const PROFILE = {
     "AI tinkerer",
     "UI/UX nerd",
     "Research Assistant",
+    "Published Researcher",
   ],
   socials: {
     github: "https://github.com/Jaisachdeva007",
@@ -30,6 +31,18 @@ export type Project = {
 };
 
 export const PROJECTS: Project[] = [
+  {
+    title: "Grid-Sailing Experiment Platform",
+    blurb:
+      "A full-stack experiment management system built as lead developer for a Dalhousie Faculty of Health research study.",
+    bullets: [
+      "End-to-end platform covering 6 experimental groups with researcher and participant login",
+      "Session block logic + SQLite data layer tracking reaction time, accuracy, score, and movement time",
+      "In-app analytics viewer with drill-down charts, CSV export, and CI/CD via GitHub Actions",
+    ],
+    stack: ["Python", "Pygame", "SQLite", "CI/CD"],
+    badge: "Flagship",
+  },
   {
     title: "EmoScape VR",
     blurb:
@@ -54,7 +67,7 @@ export const PROJECTS: Project[] = [
     ],
     stack: ["Flutter", "Dart", "Firebase", "Firestore", "OpenStreetMap"],
     github: "https://github.com/Jaisachdeva007/care-companion",
-    badge: "Flagship",
+    badge: "BeHCI Lab",
   },
   {
     title: "EviaFi",
@@ -83,14 +96,14 @@ export const PROJECTS: Project[] = [
   {
     title: "Smart Compass",
     blurb:
-      "Indoor navigation system using Visual Positioning — with a treasure-hunt twist.",
+      "AR-powered indoor navigation and wayfinding system using AI for precise routing — no Wi-Fi or Bluetooth required.",
     bullets: [
-      "VPS-driven indoor wayfinding inside complex buildings",
-      "Built in Unity / C# with custom interaction layer",
-      "Treasure-hunt mechanic to make navigation playful",
+      "AR overlays with behavioral analytics and adaptive route personalization",
+      "Built in Unity / C# with a custom interaction layer",
+      "Accepted to HCI International 2026 (LNCS, Springer)",
     ],
-    stack: ["Unity", "C#", "VPS"],
-    badge: "Coming soon",
+    stack: ["Unity", "C#", "AR"],
+    badge: "HCI Intl '26",
   },
   {
     title: "GGJ 2024 — VR",
@@ -117,12 +130,20 @@ export type Experience = {
 
 export const EXPERIENCE: Experience[] = [
   {
-    role: "Research Assistant",
-    org: "Dalhousie University",
+    role: "Lead Developer",
+    org: "Grid-Sailing Project, Faculty of Health",
     tag: "Research",
     date: "2025 — Present",
     description:
-      "Researching programming education and how students engage with course material. Analyzing engagement patterns to inform teaching practice.",
+      "Architected and built a full-stack experiment platform from scratch for a Faculty of Health study — REST API, database schema, and a CI/CD pipeline via GitHub Actions — coordinating sprints directly with faculty stakeholders.",
+  },
+  {
+    role: "Research Assistant",
+    org: "BeHCI & Persuasive Computing Labs",
+    tag: "Research",
+    date: "2025 — Present",
+    description:
+      "Building Care Companion, EmoScape VR, and SmartCompass — privacy-first, AI-driven systems spanning mobile, VR, and AR wayfinding. SmartCompass accepted to HCI International 2026.",
   },
   {
     role: "President, CS Society",
@@ -130,15 +151,23 @@ export const EXPERIENCE: Experience[] = [
     tag: "Leadership",
     date: "2025 — Present",
     description:
-      "Leading the student society — running academic and social events, building partnerships with faculty, and growing the CS community.",
+      "Leading Dalhousie's largest faculty society — 1200+ Computer Science students. Organized a 300+ guest Snowball Awards Gala, hackathons, and ski trips; managed sponsorships and the executive team.",
   },
   {
-    role: "Engagement Student Ambassador",
-    org: "Student Life, Dalhousie",
+    role: "Teaching Assistant",
+    org: "Software Engineering, Intro Programming & Theory of CS",
+    tag: "Teaching",
+    date: "2025 — Present",
+    description:
+      "Supervising 8+ Agile teams shipping Firebase-backed Android apps, running weekly labs for 60+ intro programming students, and marking 150+ formal-proof submissions — across three concurrent courses.",
+  },
+  {
+    role: "Campus Engagement & Community Safety",
+    org: "Student Life & Residence Life, Dalhousie",
     tag: "Outreach",
     date: "2024 — Present",
     description:
-      "Supporting outreach and campus engagement. Helping prospective and incoming students feel connected to university life.",
+      "Supporting 500+ student events as an Engagement Ambassador, plus residence safety monitoring and crisis response on the Community Safety Team.",
   },
   {
     role: "ITS Client Services",
@@ -146,7 +175,53 @@ export const EXPERIENCE: Experience[] = [
     tag: "Support",
     date: "2022 — Present",
     description:
-      "Frontline tech support for students, faculty, and staff. Hardware and software troubleshooting, lab and systems management.",
+      "Frontline tech support for 20,000+ students, faculty, and staff. 500+ tickets closed with hardware, software, and systems troubleshooting.",
+  },
+];
+
+export type Publication = {
+  title: string;
+  venue: string;
+  status: "Published" | "Accepted" | "Presented" | "Under Review";
+  year: string;
+  link?: string;
+};
+
+export const PUBLICATIONS: Publication[] = [
+  {
+    title:
+      "Data-Informed Decision Making in Introductory Programming Instruction",
+    venue: "Fostering Educational Culture for Student Success, IGI Global",
+    status: "Published",
+    year: "2026",
+    link: "https://doi.org/10.4018/979-8-3373-6960-0.ch009",
+  },
+  {
+    title:
+      "SmartCompass: A Persuasive Mobile-Based Technology for Indoor Navigation and Wayfinding using Augmented Reality and Artificial Intelligence",
+    venue: "HCI International 2026, LNCS Proceedings (Springer)",
+    status: "Accepted",
+    year: "2026",
+  },
+  {
+    title:
+      "Program Planning Notations in Introductory Programming Instruction: The Role of Generative AI Tools",
+    venue: "DCUTL 2026 Pre-Conference, Dalhousie University",
+    status: "Presented",
+    year: "2026",
+  },
+  {
+    title:
+      "TriSelect: Distance Adaptive Multimodal Object Selection in VR Using Eye Gaze, Hand Gesture, and Voice",
+    venue: "ICMI 2026",
+    status: "Under Review",
+    year: "2026",
+  },
+  {
+    title: "EarCoach: Earable AI Scaffolding for Novice Programmers",
+    venue: "Peer review",
+    status: "Under Review",
+    year: "2026",
   },
 ];
 
@@ -158,9 +233,10 @@ export type SkillGroup = {
 };
 
 export const STATS: { value: string; label: string }[] = [
+  { value: "5", label: "Publications & talks" },
+  { value: "7+", label: "Projects shipped" },
+  { value: "1200+", label: "Students led" },
   { value: "2×", label: "Hackathon winner" },
-  { value: "6+", label: "Projects shipped" },
-  { value: "4 yrs", label: "Building software" },
 ];
 
 export const SKILLS: SkillGroup[] = [
@@ -176,13 +252,31 @@ export const SKILLS: SkillGroup[] = [
       "Java",
       "C",
       "C#",
+      "Swift",
       "SQL",
       "React",
       "React Native",
       "Next.js",
       "Node.js",
       "Express",
+      "GraphQL",
       "Firebase",
+    ],
+  },
+  {
+    title: "Data & Cloud",
+    icon: "database",
+    blurb:
+      "Modeling, storing, and shipping data — from relational schemas to cloud deployment.",
+    items: [
+      "PostgreSQL",
+      "MySQL",
+      "MongoDB",
+      "Supabase",
+      "Redis",
+      "Google Cloud Platform",
+      "Vercel",
+      "Netlify",
     ],
   },
   {
