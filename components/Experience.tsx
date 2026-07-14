@@ -11,15 +11,31 @@ import { EXPERIENCE } from "@/lib/content";
 import { SectionHeading } from "./SectionHeading";
 import { cn } from "@/lib/cn";
 
-const PATH_D =
-  "M 350 40 C 540 200, 540 360, 350 480 C 160 600, 160 760, 350 880 C 540 1000, 540 1160, 350 1280";
+const START_Y = 40;
+const NODE_SPACING = 380;
 
-const NODES = [
-  { y: 80 },
-  { y: 480 },
-  { y: 880 },
-  { y: 1280 },
-];
+function buildTimeline(count: number) {
+  const nodes = Array.from({ length: count }, (_, i) => ({
+    y: 80 + i * NODE_SPACING,
+  }));
+
+  let d = `M 350 ${START_Y}`;
+  let prevY = START_Y;
+  nodes.forEach((n, i) => {
+    const controlX = i % 2 === 0 ? 540 : 160;
+    const span = n.y - prevY;
+    const c1 = prevY + span * 0.35;
+    const c2 = prevY + span * 0.75;
+    d += ` C ${controlX} ${c1}, ${controlX} ${c2}, 350 ${n.y}`;
+    prevY = n.y;
+  });
+
+  return { nodes, pathD: d, height: prevY + 100 };
+}
+
+const { nodes: NODES, pathD: PATH_D, height: TIMELINE_HEIGHT } = buildTimeline(
+  EXPERIENCE.length
+);
 
 export function Experience() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
@@ -62,9 +78,9 @@ export function Experience() {
 
       {/* DESKTOP */}
       <div className="relative mt-20 hidden md:block">
-        <div className="relative mx-auto" style={{ height: "1380px" }}>
+        <div className="relative mx-auto" style={{ height: `${TIMELINE_HEIGHT}px` }}>
           <svg
-            viewBox="0 0 700 1380"
+            viewBox={`0 0 700 ${TIMELINE_HEIGHT}`}
             preserveAspectRatio="xMidYMin meet"
             className="absolute left-1/2 top-0 h-full w-[640px] -translate-x-1/2"
             aria-hidden
