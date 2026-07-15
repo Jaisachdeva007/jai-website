@@ -59,7 +59,7 @@ export function ProjectCard({ project, index, featured = false, className }: Pro
         <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
-        <span className="ml-auto font-mono text-[10px] tracking-wider text-bone-400">
+        <span className="ml-auto hidden font-mono text-[10px] tracking-wider text-bone-400 sm:inline">
           ~/{project.title.toLowerCase().replace(/\s+/g, "-")}.tsx
         </span>
         {project.badge && (
@@ -69,7 +69,7 @@ export function ProjectCard({ project, index, featured = false, className }: Pro
         )}
       </div>
 
-      <div className={cn("relative", featured ? "p-8" : "p-6")}>
+      <div className={cn("relative", featured ? "p-6 md:p-8" : "p-5 md:p-6")}>
         {featured && (
           <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-neon opacity-70">
             Featured project
@@ -77,7 +77,7 @@ export function ProjectCard({ project, index, featured = false, className }: Pro
         )}
         <h3 className={cn(
           "font-display font-semibold text-white",
-          featured ? "text-3xl md:text-4xl" : "text-xl"
+          featured ? "text-2xl md:text-4xl" : "text-xl"
         )}>
           {project.title}
         </h3>
@@ -89,17 +89,26 @@ export function ProjectCard({ project, index, featured = false, className }: Pro
         </p>
 
         <ul className={cn("mt-5 space-y-2", featured && "lg:grid lg:grid-cols-2 lg:gap-x-8 lg:space-y-0")}>
-          {project.bullets.map((b) => (
-            <li key={b} className="flex gap-2.5 text-sm text-bone-200">
+          {project.bullets.map((b, i) => (
+            <li
+              key={b}
+              className={cn(
+                "flex gap-2.5 text-sm text-bone-200",
+                i >= 2 && "hidden md:flex"
+              )}
+            >
               <span className="mt-[7px] h-1 w-1 flex-shrink-0 rounded-full bg-electric" />
               <span>{b}</span>
             </li>
           ))}
         </ul>
 
-        <div className="mt-6 flex flex-wrap gap-1.5">
+        <div className="mt-6 flex gap-1.5 overflow-x-auto pb-1 [mask-image:linear-gradient(to_right,black_88%,transparent)] [scrollbar-width:none] md:flex-wrap md:overflow-visible md:pb-0 md:[mask-image:none] [&::-webkit-scrollbar]:hidden">
           {project.stack.map((s) => (
-            <span key={s} className="chip">
+            <span
+              key={s}
+              className="chip flex-shrink-0 whitespace-nowrap md:flex-shrink md:whitespace-normal"
+            >
               {s}
             </span>
           ))}

@@ -15,7 +15,7 @@ const ICONS: Record<string, LucideIcon> = {
 
 export function Skills() {
   return (
-    <section id="skills" className="container-x relative py-28 md:py-36">
+    <section id="skills" className="container-x relative py-16 md:py-28 lg:py-36">
       <SectionHeading
         eyebrow="What I work with"
         title="Skills & tooling"
@@ -36,7 +36,7 @@ export function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ delay: i * 0.1, duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="group relative overflow-hidden rounded-3xl border border-white/10 bg-ink-900/60 p-7 backdrop-blur-sm transition-all duration-400 hover:-translate-y-1.5 hover:border-neon/25 hover:shadow-glow"
+              className="group relative overflow-hidden rounded-3xl border border-white/10 bg-ink-900/60 p-5 backdrop-blur-sm transition-all duration-400 hover:-translate-y-1.5 hover:border-neon/25 hover:shadow-glow md:p-7"
             >
               <div
                 aria-hidden
@@ -56,9 +56,12 @@ export function Skills() {
                 {group.blurb}
               </p>
 
-              <div className="relative mt-5 flex flex-wrap gap-1.5">
+              <div className="relative mt-5 flex gap-1.5 overflow-x-auto pb-1 [mask-image:linear-gradient(to_right,black_88%,transparent)] [scrollbar-width:none] md:flex-wrap md:overflow-visible md:pb-0 md:[mask-image:none] [&::-webkit-scrollbar]:hidden">
                 {group.items.map((item) => (
-                  <span key={item} className="chip">
+                  <span
+                    key={item}
+                    className="chip flex-shrink-0 whitespace-nowrap md:flex-shrink md:whitespace-normal"
+                  >
                     {item}
                   </span>
                 ))}

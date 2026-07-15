@@ -15,14 +15,14 @@ const STATUS_STYLES: Record<Publication["status"], string> = {
 
 export function Publications() {
   return (
-    <section id="publications" className="container-x relative py-28 md:py-36">
+    <section id="publications" className="container-x relative py-16 md:py-28 lg:py-36">
       <SectionHeading
         eyebrow="Research output"
         title="Publications & talks"
         blurb="Peer-reviewed work spanning HCI, AI-assisted programming education, and VR interaction — from journal chapters to conference proceedings."
       />
 
-      <div className="mx-auto mt-14 max-w-3xl space-y-4">
+      <div className="mx-auto mt-10 max-w-3xl space-y-3 md:mt-14 md:space-y-4">
         {PUBLICATIONS.map((pub, i) => (
           <motion.article
             key={pub.title}
@@ -30,10 +30,10 @@ export function Publications() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ delay: i * 0.07, duration: 0.5 }}
-            className="group relative overflow-hidden rounded-2xl border border-white/10 bg-ink-900/60 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-neon/25 hover:shadow-glow"
+            className="group relative overflow-hidden rounded-2xl border border-white/10 bg-ink-900/60 p-4 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-neon/25 hover:shadow-glow sm:p-6"
           >
-            <div className="flex items-start gap-4">
-              <span className="mt-0.5 inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-white/5 text-neon-300">
+            <div className="flex items-start gap-3 sm:gap-4">
+              <span className="mt-0.5 hidden h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-white/5 text-neon-300 sm:inline-flex">
                 <FileText size={18} />
               </span>
 
@@ -52,7 +52,7 @@ export function Publications() {
                   </span>
                 </div>
 
-                <h3 className="mt-3 font-display text-base font-semibold leading-snug text-white md:text-lg">
+                <h3 className="mt-2.5 font-display text-base font-semibold leading-snug text-white sm:mt-3 md:text-lg">
                   {pub.title}
                 </h3>
                 <p className="mt-1.5 text-sm italic leading-relaxed text-bone-300">

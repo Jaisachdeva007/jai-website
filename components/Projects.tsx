@@ -36,7 +36,7 @@ export function Projects() {
   };
 
   return (
-    <section id="projects" className="container-x relative py-28 md:py-36">
+    <section id="projects" className="container-x relative py-16 md:py-28 lg:py-36">
       <SectionHeading
         eyebrow="Selected work"
         title="Projects I've shipped"

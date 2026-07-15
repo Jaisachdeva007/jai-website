@@ -10,7 +10,7 @@ export function Hero() {
   return (
     <section
       id="about"
-      className="container-x relative isolate flex min-h-[100svh] items-center pt-32 md:pt-24"
+      className="container-x relative isolate flex min-h-[100svh] items-center pt-24 md:pt-24"
     >
       {/* glow blobs */}
       <div

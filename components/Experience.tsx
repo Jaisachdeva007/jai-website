@@ -68,7 +68,7 @@ export function Experience() {
     <section
       id="experience"
       ref={sectionRef}
-      className="container-x relative py-28 md:py-36 dot-grid"
+      className="container-x relative py-16 md:py-28 lg:py-36 dot-grid"
     >
       <SectionHeading
         eyebrow="Where I've contributed"
@@ -199,9 +199,9 @@ export function Experience() {
       </div>
 
       {/* MOBILE */}
-      <div className="relative mt-12 md:hidden">
+      <div className="relative mt-10 md:hidden">
         <div className="absolute left-4 top-2 bottom-2 w-px bg-gradient-to-b from-neon via-neon/40 to-transparent" />
-        <div className="space-y-5 pl-12">
+        <div className="space-y-4 pl-12">
           {EXPERIENCE.map((exp, i) => (
             <motion.article
               key={exp.role}
@@ -209,7 +209,7 @@ export function Experience() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ delay: i * 0.08, duration: 0.5 }}
-              className="relative rounded-2xl border border-white/10 bg-ink-900/60 p-5 backdrop-blur-sm"
+              className="relative rounded-2xl border border-white/10 bg-ink-900/60 p-4 backdrop-blur-sm"
             >
               <span className="absolute -left-[34px] top-6 h-3.5 w-3.5 rounded-full bg-neon shadow-glow ring-2 ring-ink-950 ring-offset-0" />
               <span className="inline-block rounded-full bg-neon-gradient px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-white">
