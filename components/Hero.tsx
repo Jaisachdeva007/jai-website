@@ -72,23 +72,41 @@ export function Hero() {
             {PROFILE.about}
           </motion.p>
 
-          {/* Stats strip */}
+          {/* Stats strip — mobile: swipeable pills, desktop: fixed row */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.42, duration: 0.7 }}
-            className="mt-8 flex items-center gap-0 divide-x divide-white/10 rounded-2xl border border-white/8 bg-white/[0.03] backdrop-blur-sm"
+            className="mt-8"
           >
-            {STATS.map((s, i) => (
-              <div key={i} className="flex flex-1 flex-col items-center py-4">
-                <span className="font-display text-2xl font-bold text-gradient md:text-3xl">
-                  {s.value}
-                </span>
-                <span className="mt-0.5 text-[11px] font-medium text-bone-400 text-center leading-tight">
-                  {s.label}
-                </span>
-              </div>
-            ))}
+            <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-1 -mx-1 px-1 md:hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              {STATS.map((s, i) => (
+                <div
+                  key={i}
+                  className="flex w-28 flex-shrink-0 snap-center flex-col items-center rounded-2xl border border-white/8 bg-white/[0.03] py-4 backdrop-blur-sm"
+                >
+                  <span className="font-display text-2xl font-bold text-gradient">
+                    {s.value}
+                  </span>
+                  <span className="mt-0.5 text-center text-[11px] font-medium leading-tight text-bone-400">
+                    {s.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <div className="hidden items-center gap-0 divide-x divide-white/10 rounded-2xl border border-white/8 bg-white/[0.03] backdrop-blur-sm md:flex">
+              {STATS.map((s, i) => (
+                <div key={i} className="flex flex-1 flex-col items-center py-4">
+                  <span className="font-display text-2xl font-bold text-gradient md:text-3xl">
+                    {s.value}
+                  </span>
+                  <span className="mt-0.5 text-[11px] font-medium text-bone-400 text-center leading-tight">
+                    {s.label}
+                  </span>
+                </div>
+              ))}
+            </div>
           </motion.div>
 
           <motion.div

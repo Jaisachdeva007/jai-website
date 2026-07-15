@@ -96,13 +96,25 @@ export function Nav() {
             Get in touch
           </a>
 
-          <button
+          <motion.button
             aria-label="Toggle menu"
+            whileTap={{ scale: 0.88 }}
             className="flex items-center justify-center md:hidden h-9 w-9 flex-shrink-0 rounded-full bg-white/10 text-white transition-colors hover:bg-white/15"
             onClick={() => setOpen((v) => !v)}
           >
-            {open ? <X size={18} /> : <Menu size={18} />}
-          </button>
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.span
+                key={open ? "close" : "menu"}
+                initial={{ rotate: -90, opacity: 0, scale: 0.4 }}
+                animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                exit={{ rotate: 90, opacity: 0, scale: 0.4 }}
+                transition={{ duration: 0.22, ease: [0.25, 0.46, 0.45, 0.94] }}
+                className="flex"
+              >
+                {open ? <X size={18} /> : <Menu size={18} />}
+              </motion.span>
+            </AnimatePresence>
+          </motion.button>
         </nav>
       </motion.header>
 
@@ -113,17 +125,39 @@ export function Nav() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-40 bg-ink-950/97 backdrop-blur-2xl md:hidden"
+            className="fixed inset-0 z-40 overflow-hidden bg-ink-950/97 backdrop-blur-2xl md:hidden"
           >
-            <div className="flex h-full flex-col items-center justify-center gap-7 px-6">
+            <motion.div
+              aria-hidden
+              initial={{ opacity: 0, scale: 0.6 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7 }}
+              className="pointer-events-none absolute -top-24 -right-16 h-72 w-72 rounded-full bg-neon/15 blur-[100px]"
+            />
+            <motion.div
+              aria-hidden
+              initial={{ opacity: 0, scale: 0.6 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="pointer-events-none absolute -bottom-28 -left-16 h-72 w-72 rounded-full bg-electric/12 blur-[100px]"
+            />
+
+            <div className="relative flex h-full flex-col items-center justify-center gap-7 px-6">
               {links.map((l, i) => (
                 <motion.a
                   key={l.href}
                   href={l.href}
                   onClick={close}
-                  initial={{ opacity: 0, y: 24 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.06 * i, duration: 0.4 }}
+                  initial={{ opacity: 0, y: 28, scale: 0.85 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{
+                    delay: 0.06 * i,
+                    duration: 0.5,
+                    type: "spring",
+                    stiffness: 260,
+                    damping: 20,
+                  }}
                   className={cn(
                     "font-display text-4xl font-bold transition-colors",
                     active === l.href.slice(1) ? "text-neon" : "text-bone-100 hover:text-neon"
@@ -135,9 +169,15 @@ export function Nav() {
               <motion.a
                 href="mailto:jaisachdeva028@gmail.com"
                 onClick={close}
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.06 * links.length }}
+                initial={{ opacity: 0, y: 28, scale: 0.85 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                whileTap={{ scale: 0.92 }}
+                transition={{
+                  delay: 0.06 * links.length,
+                  type: "spring",
+                  stiffness: 260,
+                  damping: 20,
+                }}
                 className="mt-4 rounded-full bg-neon-gradient px-8 py-3.5 text-base font-semibold text-white shadow-glow"
               >
                 Get in touch
