@@ -3,7 +3,7 @@
 const ITEMS = [
   { label: "CS Society President", accent: "neon" },
   { label: "Research Assistant @ Dalhousie", accent: "electric" },
-  { label: "7+ Projects Shipped", accent: "neon" },
+  { label: "8+ Projects Shipped", accent: "neon" },
   { label: "2 Hackathon Wins", accent: "electric" },
   { label: "7 Publications & Talks", accent: "neon" },
   { label: "Accepted to IEEE ISMAR 2026", accent: "electric" },

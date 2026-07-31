@@ -44,6 +44,18 @@ export const PROJECTS: Project[] = [
     badge: "Flagship",
   },
   {
+    title: "Good Neighbour",
+    blurb:
+      "A community-connection app live on the App Store and Google Play — inherited from another developer, now under my ownership.",
+    bullets: [
+      "Took over 3 repos and a live production deployment, leading a small team under a non-technical founder",
+      "Diagnosed and shipped an Android camera-permission fix via EAS OTA update straight to production",
+      "Authored the company's Invest Nova Scotia Accelerate grant application",
+    ],
+    stack: ["React Native", "Expo", "Node.js", "PostgreSQL", "Stripe"],
+    badge: "Live App",
+  },
+  {
     title: "EmoScape VR",
     blurb:
       "An embodied VR space where users revisit and reflect on their emotional history — a privacy-first BeHCI Lab research prototype.",
@@ -136,6 +148,14 @@ export const EXPERIENCE: Experience[] = [
     date: "2026 — Present",
     description:
       "Architected and built a full-stack experiment platform from scratch for a Faculty of Health study — REST API, database schema, and a CI/CD pipeline via GitHub Actions — coordinating sprints directly with faculty stakeholders.",
+  },
+  {
+    role: "Lead Developer",
+    org: "Good Neighbour App",
+    tag: "Product",
+    date: "2026 — Present",
+    description:
+      "Took over a community-connection app live on the App Store and Google Play, inheriting 3 repos and a production deployment. Leading a small team, shipped an Android camera-permission fix via OTA update, and authored the company's Invest Nova Scotia Accelerate grant application.",
   },
   {
     role: "Research Assistant",
@@ -249,7 +269,7 @@ export type SkillGroup = {
 
 export const STATS: { value: string; label: string }[] = [
   { value: "7", label: "Publications & talks" },
-  { value: "7+", label: "Projects shipped" },
+  { value: "8+", label: "Projects shipped" },
   { value: "1200+", label: "Students led" },
   { value: "2×", label: "Hackathon winner" },
 ];
