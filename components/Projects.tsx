@@ -2,14 +2,21 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 import { PROJECTS } from "@/lib/content";
 import { SectionHeading } from "./SectionHeading";
 import { ProjectCard } from "./ProjectCard";
 import { cn } from "@/lib/cn";
 
+const DEFAULT_VISIBLE = 5;
+
 export function Projects() {
   const trackRef = useRef<HTMLDivElement | null>(null);
   const [active, setActive] = useState(0);
+  const [showAll, setShowAll] = useState(false);
+
+  const visible = showAll ? PROJECTS : PROJECTS.slice(0, DEFAULT_VISIBLE);
+  const hiddenCount = PROJECTS.length - DEFAULT_VISIBLE;
 
   useEffect(() => {
     const track = trackRef.current;
@@ -26,7 +33,7 @@ export function Projects() {
 
     track.addEventListener("scroll", onScroll, { passive: true });
     return () => track.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [visible.length]);
 
   const scrollToCard = (i: number) => {
     const track = trackRef.current;
@@ -61,7 +68,7 @@ export function Projects() {
           ref={trackRef}
           className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 -mx-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          {PROJECTS.map((p, i) => (
+          {visible.map((p, i) => (
             <div key={p.title} className="w-[85%] flex-shrink-0 snap-center">
               <ProjectCard project={p} index={i} featured={i === 0} />
             </div>
@@ -69,7 +76,7 @@ export function Projects() {
         </div>
 
         <div className="mt-5 flex items-center justify-center gap-1.5">
-          {PROJECTS.map((_, i) => (
+          {visible.map((_, i) => (
             <button
               key={i}
               aria-label={`Go to project ${i + 1}`}
@@ -85,7 +92,7 @@ export function Projects() {
 
       {/* DESKTOP — grid */}
       <div className="mt-16 hidden gap-5 md:grid md:grid-cols-2 lg:grid-cols-3">
-        {PROJECTS.map((p, i) => (
+        {visible.map((p, i) => (
           <ProjectCard
             key={p.title}
             project={p}
@@ -95,6 +102,24 @@ export function Projects() {
           />
         ))}
       </div>
+
+      {hiddenCount > 0 && (
+        <div className="mt-10 flex justify-center">
+          <button
+            onClick={() => setShowAll((v) => !v)}
+            className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-bone-200 transition-all duration-200 hover:border-neon/40 hover:bg-neon/10 hover:text-white"
+          >
+            {showAll ? "Show fewer" : `View all projects (+${hiddenCount})`}
+            <ChevronDown
+              size={15}
+              className={cn(
+                "transition-transform duration-300",
+                showAll ? "rotate-180" : "group-hover:translate-y-0.5"
+              )}
+            />
+          </button>
+        </div>
+      )}
     </section>
   );
 }

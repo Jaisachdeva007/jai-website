@@ -46,7 +46,7 @@ export const PROJECTS: Project[] = [
   {
     title: "EmoScape VR",
     blurb:
-      "An embodied VR space where users revisit and reflect on their emotional history — built on a GI '26 research paper.",
+      "An embodied VR space where users revisit and reflect on their emotional history — a privacy-first BeHCI Lab research prototype.",
     bullets: [
       "FastAPI pipeline: Whisper transcription, Ollama (Llama 3.2) reasoning, VADER sentiment",
       "Three.js + WebXR frontend rendering a 3D emotional spline of past sessions",
@@ -68,6 +68,18 @@ export const PROJECTS: Project[] = [
     stack: ["Flutter", "Dart", "Firebase", "Firestore", "OpenStreetMap"],
     github: "https://github.com/Jaisachdeva007/care-companion",
     badge: "BeHCI Lab",
+  },
+  {
+    title: "Smart Compass",
+    blurb:
+      "AR-powered indoor navigation and wayfinding system using AI for precise routing — no Wi-Fi or Bluetooth required.",
+    bullets: [
+      "AR overlays with behavioral analytics and adaptive route personalization",
+      "Built in Unity / C# with a custom interaction layer",
+      "Accepted to HCI International 2026 (LNCS, Springer)",
+    ],
+    stack: ["Unity", "C#", "AR"],
+    badge: "HCI Intl '26",
   },
   {
     title: "EviaFi",
@@ -92,18 +104,6 @@ export const PROJECTS: Project[] = [
     stack: ["Angular", "Generative AI", "TypeScript"],
     github: "https://github.com/Jaisachdeva007/Gen-AI",
     badge: "Hackathon",
-  },
-  {
-    title: "Smart Compass",
-    blurb:
-      "AR-powered indoor navigation and wayfinding system using AI for precise routing — no Wi-Fi or Bluetooth required.",
-    bullets: [
-      "AR overlays with behavioral analytics and adaptive route personalization",
-      "Built in Unity / C# with a custom interaction layer",
-      "Accepted to HCI International 2026 (LNCS, Springer)",
-    ],
-    stack: ["Unity", "C#", "AR"],
-    badge: "HCI Intl '26",
   },
   {
     title: "GGJ 2024 — VR",
@@ -133,7 +133,7 @@ export const EXPERIENCE: Experience[] = [
     role: "Lead Developer",
     org: "Grid-Sailing Project, Faculty of Health",
     tag: "Research",
-    date: "2025 — Present",
+    date: "2026 — Present",
     description:
       "Architected and built a full-stack experiment platform from scratch for a Faculty of Health study — REST API, database schema, and a CI/CD pipeline via GitHub Actions — coordinating sprints directly with faculty stakeholders.",
   },
@@ -190,11 +190,31 @@ export type Publication = {
 export const PUBLICATIONS: Publication[] = [
   {
     title:
-      "Data-Informed Decision Making in Introductory Programming Instruction",
-    venue: "Fostering Educational Culture for Student Success, IGI Global",
-    status: "Published",
+      "Step Inside the Match: Embodied Spatial Football Analytics in Mixed Reality",
+    venue: "IEEE ISMAR 2026 (flagship conference, Bari, Italy)",
+    status: "Accepted",
     year: "2026",
-    link: "https://doi.org/10.4018/979-8-3373-6960-0.ch009",
+  },
+  {
+    title:
+      "TriSelect: Distance Adaptive Multimodal Object Selection in VR Using Eye Gaze, Hand Gesture, and Voice",
+    venue: "ICMI 2026, ACM",
+    status: "Accepted",
+    year: "2026",
+  },
+  {
+    title:
+      "ArgumentMapper: Spatial Contracts for Agent-Generated Argument Exploration in Mixed Reality",
+    venue: "XRAG '26, IEEE ISMAR 2026 workshop",
+    status: "Accepted",
+    year: "2026",
+  },
+  {
+    title:
+      "EarCoach: AI-Mediated Spoken Scaffolding for Attention-Aware Heads-Up Programming Support",
+    venue: "AHIMR '26, IEEE ISMAR 2026 workshop",
+    status: "Accepted",
+    year: "2026",
   },
   {
     title:
@@ -205,22 +225,17 @@ export const PUBLICATIONS: Publication[] = [
   },
   {
     title:
-      "Program Planning Notations in Introductory Programming Instruction: The Role of Generative AI Tools",
-    venue: "DCUTL 2026 Pre-Conference, Dalhousie University",
-    status: "Presented",
+      "Data-Informed Decision Making in Introductory Programming Instruction",
+    venue: "Fostering Educational Culture for Student Success, IGI Global",
+    status: "Published",
     year: "2026",
+    link: "https://doi.org/10.4018/979-8-3373-6960-0.ch009",
   },
   {
     title:
-      "TriSelect: Distance Adaptive Multimodal Object Selection in VR Using Eye Gaze, Hand Gesture, and Voice",
-    venue: "ICMI 2026",
-    status: "Accepted",
-    year: "2026",
-  },
-  {
-    title: "EarCoach: Earable AI Scaffolding for Novice Programmers",
-    venue: "Peer review",
-    status: "Under Review",
+      "Program Planning Notations in Introductory Programming Instruction: The Role of Generative AI Tools",
+    venue: "DCUTL 2026 Pre-Conference, Dalhousie University",
+    status: "Presented",
     year: "2026",
   },
 ];
@@ -233,7 +248,7 @@ export type SkillGroup = {
 };
 
 export const STATS: { value: string; label: string }[] = [
-  { value: "5", label: "Publications & talks" },
+  { value: "7", label: "Publications & talks" },
   { value: "7+", label: "Projects shipped" },
   { value: "1200+", label: "Students led" },
   { value: "2×", label: "Hackathon winner" },
