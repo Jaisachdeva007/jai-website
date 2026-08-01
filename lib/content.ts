@@ -11,6 +11,7 @@ export const PROFILE = {
     "XR Builder",
     "Published Researcher",
   ],
+  resumeUrl: "/Jai-Sachdeva-Resume.pdf",
   socials: {
     github: "https://github.com/Jaisachdeva007",
     linkedin: "https://www.linkedin.com/in/jai-sachdeva-993261212",

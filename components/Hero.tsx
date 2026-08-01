@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Instagram, Mail, ArrowDown } from "lucide-react";
+import { Github, Linkedin, Instagram, Mail, ArrowDown, Download } from "lucide-react";
 import { PROFILE, STATS } from "@/lib/content";
 import { Typewriter } from "./Typewriter";
 
@@ -124,6 +124,17 @@ export function Hero() {
                 size={16}
                 className="transition-transform duration-300 group-hover:translate-y-0.5"
               />
+            </a>
+            <a
+              href={PROFILE.resumeUrl}
+              download
+              className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-bone-100 transition-all duration-300 hover:border-electric/40 hover:bg-electric/10 hover:text-white"
+            >
+              <Download
+                size={16}
+                className="transition-transform duration-300 group-hover:translate-y-0.5"
+              />
+              Resume
             </a>
             <div className="flex items-center gap-2">
               {[
