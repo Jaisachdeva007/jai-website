@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { FileText, ExternalLink } from "lucide-react";
+import { FileText, ExternalLink, ChevronDown } from "lucide-react";
 import { PUBLICATIONS, type Publication } from "@/lib/content";
 import { SectionHeading } from "./SectionHeading";
 import { cn } from "@/lib/cn";
@@ -13,7 +14,13 @@ const STATUS_STYLES: Record<Publication["status"], string> = {
   "Under Review": "border border-white/15 bg-white/5 text-bone-300",
 };
 
+const DEFAULT_VISIBLE = 4;
+
 export function Publications() {
+  const [showAll, setShowAll] = useState(false);
+  const visible = showAll ? PUBLICATIONS : PUBLICATIONS.slice(0, DEFAULT_VISIBLE);
+  const hiddenCount = PUBLICATIONS.length - DEFAULT_VISIBLE;
+
   return (
     <section id="publications" className="container-x relative py-16 md:py-28 lg:py-36">
       <SectionHeading
@@ -23,7 +30,7 @@ export function Publications() {
       />
 
       <div className="mx-auto mt-10 max-w-3xl space-y-3 md:mt-14 md:space-y-4">
-        {PUBLICATIONS.map((pub, i) => (
+        {visible.map((pub, i) => (
           <motion.article
             key={pub.title}
             initial={{ opacity: 0, y: 20 }}
@@ -75,6 +82,24 @@ export function Publications() {
           </motion.article>
         ))}
       </div>
+
+      {hiddenCount > 0 && (
+        <div className="mt-8 flex justify-center">
+          <button
+            onClick={() => setShowAll((v) => !v)}
+            className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-bone-200 transition-all duration-200 hover:border-neon/40 hover:bg-neon/10 hover:text-white"
+          >
+            {showAll ? "Show fewer" : `View all publications (+${hiddenCount})`}
+            <ChevronDown
+              size={15}
+              className={cn(
+                "transition-transform duration-300",
+                showAll ? "rotate-180" : "group-hover:translate-y-0.5"
+              )}
+            />
+          </button>
+        </div>
+      )}
     </section>
   );
 }

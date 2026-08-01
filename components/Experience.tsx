@@ -7,12 +7,14 @@ import {
   useTransform,
   useMotionValueEvent,
 } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 import { EXPERIENCE } from "@/lib/content";
 import { SectionHeading } from "./SectionHeading";
 import { cn } from "@/lib/cn";
 
 const START_Y = 40;
 const NODE_SPACING = 380;
+const MOBILE_DEFAULT_VISIBLE = 4;
 
 function buildTimeline(count: number) {
   const nodes = Array.from({ length: count }, (_, i) => ({
@@ -43,6 +45,12 @@ export function Experience() {
   const [pathLen, setPathLen] = useState(0);
   const [comet, setComet] = useState({ x: 350, y: 40 });
   const [activeIdx, setActiveIdx] = useState(-1);
+  const [showAllMobile, setShowAllMobile] = useState(false);
+
+  const mobileVisible = showAllMobile
+    ? EXPERIENCE
+    : EXPERIENCE.slice(0, MOBILE_DEFAULT_VISIBLE);
+  const mobileHiddenCount = EXPERIENCE.length - MOBILE_DEFAULT_VISIBLE;
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -202,7 +210,7 @@ export function Experience() {
       <div className="relative mt-10 md:hidden">
         <div className="absolute left-4 top-2 bottom-2 w-px bg-gradient-to-b from-neon via-neon/40 to-transparent" />
         <div className="space-y-4 pl-12">
-          {EXPERIENCE.map((exp, i) => (
+          {mobileVisible.map((exp, i) => (
             <motion.article
               key={exp.role}
               initial={{ opacity: 0, y: 20 }}
@@ -222,6 +230,24 @@ export function Experience() {
             </motion.article>
           ))}
         </div>
+
+        {mobileHiddenCount > 0 && (
+          <div className="mt-6 flex justify-center">
+            <button
+              onClick={() => setShowAllMobile((v) => !v)}
+              className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-bone-200 transition-all duration-200 hover:border-neon/40 hover:bg-neon/10 hover:text-white"
+            >
+              {showAllMobile ? "Show fewer" : `View all experience (+${mobileHiddenCount})`}
+              <ChevronDown
+                size={15}
+                className={cn(
+                  "transition-transform duration-300",
+                  showAllMobile ? "rotate-180" : "group-hover:translate-y-0.5"
+                )}
+              />
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

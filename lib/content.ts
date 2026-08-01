@@ -1,14 +1,14 @@
 export const PROFILE = {
   name: "Jai Sachdeva",
-  tagline: "I build at the intersection of AI, design, and people.",
+  tagline: "Software developer and HCI researcher building AI, XR, and mobile products.",
   about:
-    "4th-year Computer Science student at Dalhousie University. Curious about Human–Computer Interaction, AI, and UI/UX. Off the keyboard: roller hockey, tennis, and competitive debating.",
+    "Computer Science graduate (Honours) from Dalhousie University, now building AI, XR, and mobile products — with 7 accepted research papers along the way. Off the keyboard: roller hockey, tennis, and competitive debating.",
   rotatingTitles: [
-    "CS @ Dalhousie",
-    "Builder",
+    "Dalhousie CS Grad",
+    "Software Developer",
+    "HCI Researcher",
     "AI tinkerer",
-    "UI/UX nerd",
-    "Research Assistant",
+    "XR Builder",
     "Published Researcher",
   ],
   socials: {
