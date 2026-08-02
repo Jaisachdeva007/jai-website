@@ -83,8 +83,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${sans.variable} ${display.variable}`}>
-      <body className="relative min-h-screen overflow-x-hidden">
+    <html
+      lang="en"
+      className={`${sans.variable} ${display.variable} overflow-x-hidden`}
+    >
+      <body className="relative min-h-screen w-full overflow-x-hidden">
         {children}
       </body>
     </html>

@@ -26,8 +26,8 @@ export function Hero() {
         className="pointer-events-none absolute top-1/2 right-1/4 h-[300px] w-[300px] rounded-full bg-electric/6 blur-[100px]"
       />
 
-      <div className="grid w-full items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20">
-        <div>
+      <div className="grid w-full min-w-0 items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20">
+        <div className="min-w-0">
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -162,7 +162,7 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.18, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="relative mx-auto w-full max-w-md"
+          className="relative mx-auto w-full min-w-0 max-w-md"
         >
           <div className="relative aspect-square overflow-hidden rounded-[2.5rem] border border-white/10 bg-ink-800">
             {/* animated rotating glow ring — red + electric blue */}
