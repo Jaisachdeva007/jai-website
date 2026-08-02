@@ -48,7 +48,7 @@ export function Nav() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
         className={cn(
-          "fixed left-1/2 top-4 z-50 w-[92%] max-w-[68rem] -translate-x-1/2 rounded-full border transition-all duration-500",
+          "fixed inset-x-0 top-4 z-50 mx-auto w-[92%] max-w-[68rem] rounded-full border transition-all duration-500",
           scrolled
             ? "border-white/10 bg-ink-900/80 backdrop-blur-2xl shadow-card"
             : "border-white/5 bg-ink-900/30 backdrop-blur-md"
@@ -68,10 +68,13 @@ export function Nav() {
           <ul className="hidden items-center gap-1 md:flex">
             {links.map((l) => (
               <li key={l.href}>
-                <a
+                <motion.a
                   href={l.href}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.92 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
                   className={cn(
-                    "relative rounded-full px-4 py-2 text-sm font-medium transition-all duration-200",
+                    "relative inline-block rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200",
                     active === l.href.slice(1)
                       ? "text-white"
                       : "text-bone-300 hover:bg-white/5 hover:text-white"
@@ -85,17 +88,20 @@ export function Nav() {
                     />
                   )}
                   <span className="relative">{l.label}</span>
-                </a>
+                </motion.a>
               </li>
             ))}
           </ul>
 
-          <a
+          <motion.a
             href="mailto:jaisachdeva028@gmail.com"
-            className="hidden items-center gap-2 rounded-full bg-neon-gradient px-4 py-2 text-sm font-semibold text-white shadow-glow transition-all duration-300 hover:shadow-glow-lg hover:-translate-y-0.5 md:inline-flex"
+            whileHover={{ y: -2, scale: 1.03 }}
+            whileTap={{ scale: 0.94 }}
+            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+            className="hidden items-center gap-2 rounded-full bg-neon-gradient px-4 py-2 text-sm font-semibold text-white shadow-glow transition-shadow duration-300 hover:shadow-glow-lg md:inline-flex"
           >
             Get in touch
-          </a>
+          </motion.a>
 
           <motion.button
             aria-label="Toggle menu"
