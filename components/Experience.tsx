@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import {
   motion,
   useScroll,
-  useTransform,
+  useMotionValue,
   useMotionValueEvent,
 } from "framer-motion";
 import { ChevronDown } from "lucide-react";
@@ -15,7 +15,41 @@ import { cn } from "@/lib/cn";
 const START_Y = 40;
 const NODE_SPACING = 440;
 const LOOP_RADIUS = 70;
-const NODE_START_Y = START_Y + LOOP_RADIUS * 2 + 110;
+const LOOP_GAP = 110;
+
+// Full circle via the standard 4-bezier approximation, centered at (cx, cy),
+// starting/ending at its own top point so it can be spliced into a path.
+function circleLoop(cx: number, cy: number, r: number, mirrored: boolean) {
+  const k = r * 0.5523;
+  const top = `${cx} ${cy - r}`;
+  const side1 = mirrored ? cx - r : cx + r;
+  const side2 = mirrored ? cx + r : cx - r;
+  const sign = mirrored ? -1 : 1;
+  let d = "";
+  d += ` C ${cx + sign * k} ${cy - r}, ${side1} ${cy - k}, ${side1} ${cy}`;
+  d += ` C ${side1} ${cy + k}, ${cx + sign * k} ${cy + r}, ${cx} ${cy + r}`;
+  d += ` C ${cx - sign * k} ${cy + r}, ${side2} ${cy + k}, ${side2} ${cy}`;
+  d += ` C ${side2} ${cy - k}, ${cx - sign * k} ${cy - r}, ${top}`;
+  return d;
+}
+
+// Two playful loop-de-loops the comet traces before starting its climb down.
+// circleLoop always returns to its own starting point, so the path cursor
+// after both loops sits back at loop2StartY — that's what buildTimeline must
+// continue from. The loops' visual footprint reaches further down though
+// (to loop2Cy + LOOP_RADIUS), which is what node spacing needs to clear.
+const loop1Cy = START_Y + LOOP_RADIUS;
+const loop2StartY = START_Y + LOOP_RADIUS * 2;
+const loop2Cy = loop2StartY + LOOP_RADIUS;
+const LOOP_PATH_END_Y = loop2StartY;
+const LOOP_VISUAL_BOTTOM = loop2Cy + LOOP_RADIUS;
+const LOOP_D =
+  `M 350 ${START_Y}` +
+  circleLoop(350, loop1Cy, LOOP_RADIUS, false) +
+  ` C 380 ${START_Y + 40}, 320 ${loop2StartY - 40}, 350 ${loop2StartY}` +
+  circleLoop(350, loop2Cy, LOOP_RADIUS, true);
+
+const NODE_START_Y = LOOP_VISUAL_BOTTOM + LOOP_GAP;
 const MOBILE_DEFAULT_VISIBLE = 4;
 
 function buildTimeline(count: number) {
@@ -23,22 +57,8 @@ function buildTimeline(count: number) {
     y: NODE_START_Y + i * NODE_SPACING,
   }));
 
-  // Playful loop-de-loop flourish the comet does before starting its climb down
-  const cx = 350;
-  const cy = START_Y + LOOP_RADIUS;
-  const k = LOOP_RADIUS * 0.5523;
-  const top = `${cx} ${START_Y}`;
-  const right = `${cx + LOOP_RADIUS} ${cy}`;
-  const bottom = `${cx} ${cy + LOOP_RADIUS}`;
-  const left = `${cx - LOOP_RADIUS} ${cy}`;
-
-  let d = `M ${top}`;
-  d += ` C ${cx + k} ${START_Y}, ${cx + LOOP_RADIUS} ${cy - k}, ${right}`;
-  d += ` C ${cx + LOOP_RADIUS} ${cy + k}, ${cx + k} ${cy + LOOP_RADIUS}, ${bottom}`;
-  d += ` C ${cx - k} ${cy + LOOP_RADIUS}, ${cx - LOOP_RADIUS} ${cy + k}, ${left}`;
-  d += ` C ${cx - LOOP_RADIUS} ${cy - k}, ${cx - k} ${START_Y}, ${top}`;
-
-  let prevY = START_Y;
+  let d = LOOP_D;
+  let prevY = LOOP_PATH_END_Y;
   nodes.forEach((n, i) => {
     const controlX = i % 2 === 0 ? 540 : 160;
     const span = n.y - prevY;
@@ -54,12 +74,14 @@ function buildTimeline(count: number) {
 const { nodes: NODES, pathD: PATH_D, height: TIMELINE_HEIGHT } = buildTimeline(
   EXPERIENCE.length
 );
+const LOOP_PIXEL_HEIGHT = LOOP_VISUAL_BOTTOM - START_Y;
 
 export function Experience() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const timelineRef = useRef<HTMLDivElement | null>(null);
   const pathRef = useRef<SVGPathElement | null>(null);
   const [pathLen, setPathLen] = useState(0);
+  const [loopLen, setLoopLen] = useState(0);
   const [comet, setComet] = useState({ x: 350, y: 40 });
   const [activeIdx, setActiveIdx] = useState(-1);
   const [showAllMobile, setShowAllMobile] = useState(false);
@@ -74,16 +96,36 @@ export function Experience() {
     offset: ["start 0.7", "end 0.3"],
   });
 
-  const drawn = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const drawn = useMotionValue(0);
 
   useEffect(() => {
     if (pathRef.current) setPathLen(pathRef.current.getTotalLength());
+    const temp = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    temp.setAttribute("d", LOOP_D);
+    setLoopLen(temp.getTotalLength());
   }, []);
 
   useMotionValueEvent(scrollYProgress, "change", (p) => {
-    if (!pathRef.current || !pathLen) return;
+    if (!pathRef.current || !pathLen || !loopLen) return;
     const clamped = Math.min(Math.max(p, 0), 1);
-    const pt = pathRef.current.getPointAtLength(clamped * pathLen);
+    const pixelY = clamped * TIMELINE_HEIGHT;
+
+    // The loop-de-loops pack a lot of arc length into little vertical space —
+    // give them their own pixel-proportional budget instead of letting a flat
+    // length-fraction eat scroll distance the rest of the timeline needs.
+    let lengthAtPoint;
+    if (pixelY <= LOOP_PIXEL_HEIGHT) {
+      lengthAtPoint = (pixelY / LOOP_PIXEL_HEIGHT) * loopLen;
+    } else {
+      const remainingPixels = TIMELINE_HEIGHT - LOOP_PIXEL_HEIGHT;
+      const remainingLength = pathLen - loopLen;
+      const localProgress = (pixelY - LOOP_PIXEL_HEIGHT) / remainingPixels;
+      lengthAtPoint = loopLen + localProgress * remainingLength;
+    }
+
+    drawn.set(lengthAtPoint / pathLen);
+
+    const pt = pathRef.current.getPointAtLength(lengthAtPoint);
     setComet({ x: pt.x, y: pt.y });
     const next = NODES.reduce((acc, n, i) => (pt.y >= n.y - 80 ? i : acc), -1);
     setActiveIdx(next);
