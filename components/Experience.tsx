@@ -15,36 +15,40 @@ import { cn } from "@/lib/cn";
 const START_Y = 40;
 const NODE_SPACING = 440;
 const LOOP_RADIUS = 70;
+const MID_LOOP_RX = 130;
+const MID_LOOP_RY = 55;
 const NODE_GAP = 110;
 const MOBILE_DEFAULT_VISIBLE = 4;
 
 type Segment = { y0: number; y1: number; standaloneD: string };
 
-// Full circle via the standard 4-bezier approximation, centered at (cx, cy),
+// Full ellipse via the standard 4-bezier approximation, centered at (cx, cy),
 // starting/ending at its own top point so it can be spliced into a path.
-function circleLoop(cx: number, cy: number, r: number, mirrored: boolean) {
-  const k = r * 0.5523;
-  const top = `${cx} ${cy - r}`;
-  const side1 = mirrored ? cx - r : cx + r;
-  const side2 = mirrored ? cx + r : cx - r;
+// rx === ry gives a perfect circle; different values give a stretched oval.
+function ellipseLoop(cx: number, cy: number, rx: number, ry: number, mirrored: boolean) {
+  const kx = rx * 0.5523;
+  const ky = ry * 0.5523;
+  const top = `${cx} ${cy - ry}`;
+  const side1 = mirrored ? cx - rx : cx + rx;
+  const side2 = mirrored ? cx + rx : cx - rx;
   const sign = mirrored ? -1 : 1;
   let d = "";
-  d += ` C ${cx + sign * k} ${cy - r}, ${side1} ${cy - k}, ${side1} ${cy}`;
-  d += ` C ${side1} ${cy + k}, ${cx + sign * k} ${cy + r}, ${cx} ${cy + r}`;
-  d += ` C ${cx - sign * k} ${cy + r}, ${side2} ${cy + k}, ${side2} ${cy}`;
-  d += ` C ${side2} ${cy - k}, ${cx - sign * k} ${cy - r}, ${top}`;
+  d += ` C ${cx + sign * kx} ${cy - ry}, ${side1} ${cy - ky}, ${side1} ${cy}`;
+  d += ` C ${side1} ${cy + ky}, ${cx + sign * kx} ${cy + ry}, ${cx} ${cy + ry}`;
+  d += ` C ${cx - sign * kx} ${cy + ry}, ${side2} ${cy + ky}, ${side2} ${cy}`;
+  d += ` C ${side2} ${cy - ky}, ${cx - sign * kx} ${cy - ry}, ${top}`;
   return d;
 }
 
 // A loop-de-loop plus a short connecting descent, so the path cursor ends up
-// exactly LOOP_RADIUS*2 lower — in sync with the loop's own visual bulge,
-// so it can be dropped in anywhere without special-casing what follows it.
-function loopWithDescent(y: number, mirrored: boolean) {
-  const cy = y + LOOP_RADIUS;
-  const endY = y + LOOP_RADIUS * 2;
+// exactly ry*2 lower — in sync with the loop's own visual bulge, so it can
+// be dropped in anywhere without special-casing what follows it.
+function loopWithDescent(y: number, rx: number, ry: number, mirrored: boolean) {
+  const cy = y + ry;
+  const endY = y + ry * 2;
   const wiggle = mirrored ? -30 : 30;
-  let d = circleLoop(350, cy, LOOP_RADIUS, mirrored);
-  d += ` C ${350 + wiggle} ${y + 40}, ${350 - wiggle} ${endY - 40}, 350 ${endY}`;
+  let d = ellipseLoop(350, cy, rx, ry, mirrored);
+  d += ` C ${350 + wiggle} ${y + ry * 0.55}, ${350 - wiggle} ${endY - ry * 0.55}, 350 ${endY}`;
   return { d, endY };
 }
 
@@ -61,9 +65,9 @@ function buildTimeline(count: number) {
     y = y1;
   };
 
-  const addLoop = () => {
+  const addLoop = (rx: number, ry: number) => {
     const y0 = y;
-    const { d: loopD, endY } = loopWithDescent(y0, mirror);
+    const { d: loopD, endY } = loopWithDescent(y0, rx, ry, mirror);
     pushSeg(loopD, y0, endY);
     mirror = !mirror;
   };
@@ -76,20 +80,20 @@ function buildTimeline(count: number) {
     pushSeg(` C ${controlX} ${c1}, ${controlX} ${c2}, 350 ${y1}`, y0, y1);
   };
 
-  // Intro flourish: a double loop-de-loop before the descent even begins
-  addLoop();
-  addLoop();
+  // Intro flourish: a single loop-de-loop before the descent even begins
+  addLoop(LOOP_RADIUS, LOOP_RADIUS);
   climb(NODE_GAP, 540);
   nodes.push({ y });
 
-  // One more loop-de-loop roughly halfway through, mid-climb between two nodes
+  // A second, differently-shaped flourish (a wide oval, not another circle)
+  // roughly halfway through, mid-climb between two nodes
   const midLoopAfter = Math.floor((count - 1) / 2);
 
   for (let i = 1; i < count; i++) {
     const controlX = i % 2 === 0 ? 540 : 160;
     if (i - 1 === midLoopAfter) {
       climb(NODE_SPACING / 2, controlX);
-      addLoop();
+      addLoop(MID_LOOP_RX, MID_LOOP_RY);
       climb(NODE_SPACING / 2, controlX);
     } else {
       climb(NODE_SPACING, controlX);
