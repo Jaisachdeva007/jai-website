@@ -13,15 +13,31 @@ import { SectionHeading } from "./SectionHeading";
 import { cn } from "@/lib/cn";
 
 const START_Y = 40;
-const NODE_SPACING = 380;
+const NODE_SPACING = 440;
+const LOOP_RADIUS = 70;
+const NODE_START_Y = START_Y + LOOP_RADIUS * 2 + 110;
 const MOBILE_DEFAULT_VISIBLE = 4;
 
 function buildTimeline(count: number) {
   const nodes = Array.from({ length: count }, (_, i) => ({
-    y: 80 + i * NODE_SPACING,
+    y: NODE_START_Y + i * NODE_SPACING,
   }));
 
-  let d = `M 350 ${START_Y}`;
+  // Playful loop-de-loop flourish the comet does before starting its climb down
+  const cx = 350;
+  const cy = START_Y + LOOP_RADIUS;
+  const k = LOOP_RADIUS * 0.5523;
+  const top = `${cx} ${START_Y}`;
+  const right = `${cx + LOOP_RADIUS} ${cy}`;
+  const bottom = `${cx} ${cy + LOOP_RADIUS}`;
+  const left = `${cx - LOOP_RADIUS} ${cy}`;
+
+  let d = `M ${top}`;
+  d += ` C ${cx + k} ${START_Y}, ${cx + LOOP_RADIUS} ${cy - k}, ${right}`;
+  d += ` C ${cx + LOOP_RADIUS} ${cy + k}, ${cx + k} ${cy + LOOP_RADIUS}, ${bottom}`;
+  d += ` C ${cx - k} ${cy + LOOP_RADIUS}, ${cx - LOOP_RADIUS} ${cy + k}, ${left}`;
+  d += ` C ${cx - LOOP_RADIUS} ${cy - k}, ${cx - k} ${START_Y}, ${top}`;
+
   let prevY = START_Y;
   nodes.forEach((n, i) => {
     const controlX = i % 2 === 0 ? 540 : 160;
