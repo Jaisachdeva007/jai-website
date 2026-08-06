@@ -95,7 +95,7 @@ export function Experience() {
           <svg
             viewBox={`0 0 700 ${TIMELINE_HEIGHT}`}
             preserveAspectRatio="xMidYMin meet"
-            className="absolute left-1/2 top-0 h-full w-[640px] -translate-x-1/2"
+            className="absolute left-1/2 top-0 h-full w-[640px] -translate-x-1/2 lg:w-[720px] xl:w-[800px]"
             aria-hidden
           >
             <defs>
