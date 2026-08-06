@@ -41,6 +41,7 @@ const { nodes: NODES, pathD: PATH_D, height: TIMELINE_HEIGHT } = buildTimeline(
 
 export function Experience() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
+  const timelineRef = useRef<HTMLDivElement | null>(null);
   const pathRef = useRef<SVGPathElement | null>(null);
   const [pathLen, setPathLen] = useState(0);
   const [comet, setComet] = useState({ x: 350, y: 40 });
@@ -53,7 +54,7 @@ export function Experience() {
   const mobileHiddenCount = EXPERIENCE.length - MOBILE_DEFAULT_VISIBLE;
 
   const { scrollYProgress } = useScroll({
-    target: sectionRef,
+    target: timelineRef,
     offset: ["start 0.7", "end 0.3"],
   });
 
@@ -86,7 +87,11 @@ export function Experience() {
 
       {/* DESKTOP */}
       <div className="relative mt-20 hidden md:block">
-        <div className="relative mx-auto" style={{ height: `${TIMELINE_HEIGHT}px` }}>
+        <div
+          ref={timelineRef}
+          className="relative mx-auto"
+          style={{ height: `${TIMELINE_HEIGHT}px` }}
+        >
           <svg
             viewBox={`0 0 700 ${TIMELINE_HEIGHT}`}
             preserveAspectRatio="xMidYMin meet"
