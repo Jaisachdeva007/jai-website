@@ -43,6 +43,11 @@ export function Nav() {
 
   return (
     <>
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-x-0 top-0 z-40 h-28 bg-gradient-to-b from-ink-950 via-ink-950/70 to-transparent"
+      />
+
       <motion.header
         initial={{ y: -48, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
