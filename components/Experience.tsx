@@ -126,8 +126,9 @@ export function Experience() {
               d={PATH_D}
               fill="none"
               stroke="url(#pathGrad)"
-              strokeWidth="3"
+              strokeWidth="4"
               strokeLinecap="round"
+              filter="url(#glow)"
               style={{ pathLength: drawn }}
             />
 
